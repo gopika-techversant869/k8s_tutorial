@@ -8,13 +8,13 @@ In the past, companies bought physical servers to deploy apps. Expensive, slow t
 
 How App Deployment Worked with Physical Servers
 -----------------------------------------------------
-You have a physical server — a real computer machine in your data center or office.
+- You have a physical server — a real computer machine in your data center or office.
 
-You install an operating system (like Linux or Windows) on it.
+- You install an operating system (like Linux or Windows) on it.
 
-You install all your app dependencies (databases, runtimes, libraries).
+- You install all your app dependencies (databases, runtimes, libraries).
 
-You deploy your application directly on that physical server.
+- You deploy your application directly on that physical server.
 
 The app runs there, serving your users.
 
