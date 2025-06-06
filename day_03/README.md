@@ -33,3 +33,16 @@ Here we implement the Virtual Machines
 A VM is a software emulation of a physical computer that runs an operating system and applications just like a real computer.
 
 ![image](https://github.com/user-attachments/assets/1a751a49-94c0-4c34-b93e-e19aca6f09eb)
+
+Working of VM
+-------------------------------------------------------
+- Hypervisor software runs on a physical server (host).
+
+- It creates virtual hardware (CPU, memory, storage) for each VM.
+
+- Each VM boots its own guest operating system using this virtual hardware.
+
+- The hypervisor manages resource sharing and keeps VMs isolated from each other.
+
+- Apps run inside the VM as if on a real computer.
+
