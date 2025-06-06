@@ -46,3 +46,37 @@ Working of VM
 
 - Apps run inside the VM as if on a real computer.
 
+But we have some demerits for using the VM
+---------------------------------------------
+- If we deploy an app directly to a VM (like an AWS EC2 instance), we need to:
+
+- Manually install all the dependencies (Python, libraries, MySQL, etc.) on the VM.
+
+- Set up the environment and configure everything ourselves.
+
+Steps: Deploy App in a VM
+--------------------------
+1.Launch EC2 (Ubuntu, for example).
+2.SSH into EC2.
+3.Install runtime (e.g., Python, Node, etc.).
+4.Install Git
+5.Clone the repo
+6.Run the app
+
+This looks like:
+------------------
+
+![image](https://github.com/user-attachments/assets/c2fa7654-f56d-4dca-9348-04db9188b077)
+
+To solve this we implement the containerization
+------------------------------------------------
+
+- We package the app and all its dependencies into a Docker image.
+
+- We build and push the image to Docker Hub.
+
+- Then we create an EC2 instance in AWS.
+
+- On the EC2 VM, we install Docker (just once).
+
+- We pull the image from Docker Hub and run it directly, without worrying about installing dependencies on the VM.
