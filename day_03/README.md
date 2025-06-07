@@ -1,82 +1,109 @@
-Docker fundamentals
-----------------------------------
-Before Docker we need to know about vm, Before VM we need to know physical server and how we deployed our apps in a server.
+Docker installation
+---------------------
+1. Update the apt package index and install prerequisites:
 
-In the past, companies bought physical servers to deploy apps. Expensive, slow to set up, and hard to maintain.
+                    sudo apt-get update
+                    sudo apt-get install \
+                        ca-certificates \
+                        curl \
+                        gnupg
+   
+2. Add Docker’s official GPG key:
 
-![image](https://github.com/user-attachments/assets/20dfcc77-edb2-409d-ae49-84fa20f51b97)
+                    sudo install -m 0755 -d /etc/apt/keyrings
+                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+                    sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-How App Deployment Worked with Physical Servers
------------------------------------------------------
-- You have a physical server — a real computer machine in your data center or office.
+3. Set up the Docker repository:
 
-- You install an operating system (like Linux or Windows) on it.
+                    echo \
+                    "deb [arch=$(dpkg --print-architecture) \
+                    signed-by=/etc/apt/keyrings/docker.gpg] \
+                    https://download.docker.com/linux/ubuntu \
+                    $(lsb_release -cs) stable" | \
+                    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-- You install all your app dependencies (databases, runtimes, libraries).
+4.  Install Docker Engine:
 
-- You deploy your application directly on that physical server.
+                    sudo apt-get update
+                    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-The app runs there, serving your users.
 
-Why This Was Challenging
----------------------------------------------------------------------------
-If you wanted to deploy multiple apps, you needed multiple physical servers (expensive!).
+6.  Verfify docker
+   
+                    docker info
 
-Setting up servers took time and effort.
+          You get the all information about the docker 
 
-Hardware failures meant downtime until fixed or replaced.
 
-Scaling (adding more capacity) meant buying and installing new physical machines.
+7. Run Your first container
 
-Here we implement the Virtual Machines
------------------------------------------------------------------------------
-A VM is a software emulation of a physical computer that runs an operating system and applications just like a real computer.
+Go to your terminal and write this command
 
-![image](https://github.com/user-attachments/assets/1a751a49-94c0-4c34-b93e-e19aca6f09eb)
+                    docker run hello-world
 
-Working of VM
--------------------------------------------------------
-- Hypervisor software runs on a physical server (host).
+Step-by-step breakdown:
+-----------------------------------------
+1.Docker CLI (docker) sends a command to the Docker daemon (dockerd) saying:
+    “Please run the container hello-world.”
 
-- It creates virtual hardware (CPU, memory, storage) for each VM.
+2.Docker Daemon checks if the hello-world image exists locally on your system.
 
-- Each VM boots its own guest operating system using this virtual hardware.
+    If not found locally, it pulls the image from Docker Hub:Then you can see this:
 
-- The hypervisor manages resource sharing and keeps VMs isolated from each other.
+        Unable to find image 'hello-world:latest' locally
+        latest: Pulling from library/hello-world
+        
+3.Once pulled, Docker creates a container from the image.
 
-- Apps run inside the VM as if on a real computer.
+4.Docker starts the container.
 
-But we have some demerits for using the VM
----------------------------------------------
-- If we deploy an app directly to a VM (like an AWS EC2 instance), we need to:
+5.The container runs a small program that prints like this :
 
-- Manually install all the dependencies (Python, libraries, MySQL, etc.) on the VM.
+        docker run hello-world
+        
+                Unable to find image 'hello-world:latest' locally
+                latest: Pulling from library/hello-world
+                e6590344b1a5: Pull complete 
+                Digest: sha256:0b6a027b5cf322f09f6706c754e086a232ec1ddba835c8a15c6cb74ef0d43c29
+                Status: Downloaded newer image for hello-world:latest
+                
+                Hello from Docker!
+                This message shows that your installation appears to be working correctly.
+                
+                To generate this message, Docker took the following steps:
+                 1. The Docker client contacted the Docker daemon.
+                 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+                    (amd64)
+                 3. The Docker daemon created a new container from that image which runs the
+                    executable that produces the output you are currently reading.
+                 4. The Docker daemon streamed that output to the Docker client, which sent it
+                    to your terminal.
+                
+                To try something more ambitious, you can run an Ubuntu container with:
+                 $ docker run -it ubuntu bash
+                
+                Share images, automate workflows, and more with a free Docker ID:
+                 https://hub.docker.com/
+                
+                For more examples and ideas, visit:
+                 https://docs.docker.com/get-started/
 
-- Set up the environment and configure everything ourselves.
 
-Steps: Deploy App in a VM
---------------------------
-1.Launch EC2 (Ubuntu, for example).
-2.SSH into EC2.
-3.Install runtime (e.g., Python, Node, etc.).
-4.Install Git
-5.Clone the repo
-6.Run the app
+Here I am not installed python or any external packages.
 
-This looks like:
-------------------
+If you need to list the images:
 
-![image](https://github.com/user-attachments/assets/c2fa7654-f56d-4dca-9348-04db9188b077)
+        docker images
 
-To solve this we implement the containerization
-------------------------------------------------
+If you need to remove the container or image, you can use the following commands
 
-- We package the app and all its dependencies into a Docker image.
+            | Command      | What it Removes | What it Works On       | Typical Usage                                  |
+        | ------------ | --------------- | ---------------------- | ---------------------------------------------- |
+        | `docker rm`  | **Containers**  | Container IDs or names | Delete stopped or exited containers            |
+        | `docker rmi` | **Images**      | Image names or IDs     | Delete images (only if no containers use them) |
 
-- We build and push the image to Docker Hub.
 
-- Then we create an EC2 instance in AWS.
 
-- On the EC2 VM, we install Docker (just once).
-
-- We pull the image from Docker Hub and run it directly, without worrying about installing dependencies on the VM.
+      
+   

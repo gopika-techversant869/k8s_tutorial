@@ -1,43 +1,82 @@
-# k8s_tutorial
+Docker fundamentals
+----------------------------------
+Before Docker we need to know about vm, Before VM we need to know physical server and how we deployed our apps in a server.
 
-Kubernets Archetecture
-----------------------
-Kubernetes architecture is, at its core, a distributed system. It automates the deployment, scaling, and management of containerised apps across multiple machines. This distributed nature lets Kubernetes handle large workloads. It maintains high resilience and efficiency.
+In the past, companies bought physical servers to deploy apps. Expensive, slow to set up, and hard to maintain.
 
-![image](https://github.com/user-attachments/assets/28d7917d-bb5d-4f58-a39a-04ba772c4bea)
+![image](https://github.com/user-attachments/assets/20dfcc77-edb2-409d-ae49-84fa20f51b97)
 
+How App Deployment Worked with Physical Servers
+-----------------------------------------------------
+- You have a physical server — a real computer machine in your data center or office.
 
-Components of Archetecture:
+- You install an operating system (like Linux or Windows) on it.
 
-Api Server:
-------------
+- You install all your app dependencies (databases, runtimes, libraries).
 
-client interact with the cluster using api server
+- You deploy your application directly on that physical server.
 
-![Apiserver](https://github.com/user-attachments/assets/9026eb2f-1b6c-4f19-b8b0-0e33f3474821)
+The app runs there, serving your users.
 
+Why This Was Challenging
+---------------------------------------------------------------------------
+If you wanted to deploy multiple apps, you needed multiple physical servers (expensive!).
 
-Etcd:
--------
-A distributed key-value store. It is Kubernetes' single source of truth, storing config data and state info.
+Setting up servers took time and effort.
 
-![Untitled Diagram](https://github.com/user-attachments/assets/3fc0cfd7-69f8-49fe-a9cc-b961c5b0a5d8)
+Hardware failures meant downtime until fixed or replaced.
 
-Scheduler:
-------------
-Assign the best node.
+Scaling (adding more capacity) meant buying and installing new physical machines.
 
-Kubelet:
----------------
-Kubelet manages containers on each node and receives instructions from the Kubernetes API server to ensure Pods run correctly.
+Here we implement the Virtual Machines
+-----------------------------------------------------------------------------
+A VM is a software emulation of a physical computer that runs an operating system and applications just like a real computer.
 
-![kubelet](https://github.com/user-attachments/assets/618f0809-6627-4002-ab74-933e94c2d5e3)
+![image](https://github.com/user-attachments/assets/1a751a49-94c0-4c34-b93e-e19aca6f09eb)
 
-Kube proxy:
------------
-Used for pods to pod communication
+Working of VM
+-------------------------------------------------------
+- Hypervisor software runs on a physical server (host).
 
-![kubelet](https://github.com/user-attachments/assets/ca13c39e-6164-4adc-9015-eae0b55cb646)
+- It creates virtual hardware (CPU, memory, storage) for each VM.
 
+- Each VM boots its own guest operating system using this virtual hardware.
 
+- The hypervisor manages resource sharing and keeps VMs isolated from each other.
 
+- Apps run inside the VM as if on a real computer.
+
+But we have some demerits for using the VM
+---------------------------------------------
+- If we deploy an app directly to a VM (like an AWS EC2 instance), we need to:
+
+- Manually install all the dependencies (Python, libraries, MySQL, etc.) on the VM.
+
+- Set up the environment and configure everything ourselves.
+
+Steps: Deploy App in a VM
+--------------------------
+1.Launch EC2 (Ubuntu, for example).
+2.SSH into EC2.
+3.Install runtime (e.g., Python, Node, etc.).
+4.Install Git
+5.Clone the repo
+6.Run the app
+
+This looks like:
+------------------
+
+![image](https://github.com/user-attachments/assets/c2fa7654-f56d-4dca-9348-04db9188b077)
+
+To solve this we implement the containerization
+------------------------------------------------
+
+- We package the app and all its dependencies into a Docker image.
+
+- We build and push the image to Docker Hub.
+
+- Then we create an EC2 instance in AWS.
+
+- On the EC2 VM, we install Docker (just once).
+
+- We pull the image from Docker Hub and run it directly, without worrying about installing dependencies on the VM.

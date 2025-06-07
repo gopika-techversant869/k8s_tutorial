@@ -46,3 +46,4 @@ Provided and maintained by cloud vendors — easy to set up, scale, and maintain
   Tools like Rancher, Anthos, or OpenShift help manage hybrid clusters.
   
   Useful for redundancy, compliance, or data locality.
+
