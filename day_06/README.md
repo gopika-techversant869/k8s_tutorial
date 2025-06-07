@@ -1,8 +1,7 @@
 Docker installation
 ---------------------
+1. Update the apt package index and install prerequisites:
 
-**1. Update the apt package index and install prerequisites:
-**
           sudo apt-get update
           sudo apt-get install \
               ca-certificates \
