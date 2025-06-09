@@ -137,7 +137,10 @@ How to stop tyhe container:
 
       docker stop container name
 
-      
+
+Note:
+------
+You can try this with docker_test_app 
             
             
 
