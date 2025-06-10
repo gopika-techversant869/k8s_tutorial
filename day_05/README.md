@@ -62,5 +62,33 @@ Open your browser at:
 - Ports 5000 and 5001 are mapped to the host for easy browser access.
 
 
+But here we have some limitations 
+-------------------------------------------
+1. Manual networking and setup
+
+           - Here we need to setup the same network for each container
+2.Harder to manage dependencies
+            - If app2 depends on app1, you have to make sure app1 runs first, manually.
+            - No built-in depends_on like Docker Compose provides.
+            
+3.No central configuration
+
+4.Scaling is hard 
+            - Want to run 3 instances of a container? You’d have to script it manually.
+
+When manual is okay
+--------------------------
+           - For very simple setups
+            
+           - For learning purposes
+            
+           - When you only need 1 or 2 containers temporarily
+
+
+If we have more conatiners we need a solution. So that the solution is Docker compose
+
+
+
+   
 
 
