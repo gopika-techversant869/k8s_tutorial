@@ -15,13 +15,13 @@ In this example, we deploy two Flask applications: app_1 and app_2.
 App structure:
 ----------------------
 
-day_05/
-├── app_1/
-│   ├── app.py
-│   └── Dockerfile
-├── app_2/
-│   ├── app2.py
-│   └── Dockerfile
+                                                day_05/
+                                                ├── app_1/
+                                                │   ├── app.py
+                                                │   └── Dockerfile
+                                                ├── app_2/
+                                                │   ├── app2.py
+                                                │   └── Dockerfile
 
 Build docker Images 
 ------------------------------
