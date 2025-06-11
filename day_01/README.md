@@ -56,12 +56,12 @@ But we have some demerits for using the VM
 
 Steps: Deploy App in a VM
 --------------------------
-1.Launch EC2 (Ubuntu, for example).
-2.SSH into EC2.
-3.Install runtime (e.g., Python, Node, etc.).
-4.Install Git
-5.Clone the repo
-6.Run the app
+      1.Launch EC2 (Ubuntu, for example).
+      2.SSH into EC2.
+      3.Install runtime (e.g., Python, Node, etc.).
+      4.Install Git
+      5.Clone the repo
+      6.Run the app
 
 This looks like:
 ------------------
