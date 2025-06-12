@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app_1:
+    build:
+      context: ./app_1
+    container_name: app_1
+    working_dir: /app
+    command: ["python", "app.py"]
+    volumes:
+      - ./app_1:/app
+    ports:
+      - "5001:5000"
+
+  app_2:
+    build:
+      context: ./app_2
+    container_name: app_2
+    working_dir: /app
+    command: ["python", "app1.py"]
+    volumes:
+      - ./app_2:/app
+    ports:
+      - "5002:5000"
