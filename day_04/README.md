@@ -1,6 +1,7 @@
 How to containerize our application
 ---------------------------------
 step 1: Add a Docer file in to your application
+----------------------------------------------------------
 
 Follow the official Docker Documentation:
 
@@ -37,6 +38,8 @@ A Dockerfile is a plain text file with instructions that Docker uses to build a 
 
 In this Dockerfile, we start by using a minimal base image:
 ---------------------------------------------------------------------
+List of base images : https://hub.docker.com/_/python  (you can refer this)
+
 🔹 Base Image: python:3.10-slim
                   - It's a lighter version of the full Python 3.10 image.
                   
@@ -54,12 +57,24 @@ In this Dockerfile, we start by using a minimal base image:
                   - It also sets it as the current working directory for all following instructions.
                   
                   - So all file paths after this are relative to /app.
-            docker build -t your-image-name .
+            docker build -t your-image-name .RUN pip install --no-cache-dir -r requirements.txt
+
+
+                                    /
+                                    ├── app/
+                                    │   ├── requirements.txt
+                                    │   ├── app.py
+                                    │   └── (your app files)
+                                    ├── bin/
+                                    ├── lib/
+                                    ├── usr/
+                                    └── ... (system folders)
 
 🔹 COPY requirements.txt .
                   - Copies requirements.txt from your host machine into the /app folder in the container.
                   
                   - The . means “copy to the current directory,” which is /app.
+                  
 
 🔹 RUN pip install --no-cache-dir -r requirements.txt
                   -  Installs Python dependencies listed in requirements.txt.
@@ -78,6 +93,7 @@ In this Dockerfile, we start by using a minimal base image:
                   -  Warning: This will also copy unwanted files unless you use a .dockerignore.
 
 🔹 CMD ["python", "app.py"]
+
                   - This is the default command that runs when the container starts.
                   
                   - It runs python app.py inside the /app directory.
@@ -112,6 +128,12 @@ How to get the status of the container:
 ---------------------------------------
 docker ps           - Running containers
 docker ps -a        - All containers (including stopped ones)
+
+
+Its looks like
+----------------------------------------
+
+![image](https://github.com/user-attachments/assets/b64b2f1f-03b3-4e81-8cb3-aaf7e622e7a9)
 
 How to debug the containers
 --------------------------------------
