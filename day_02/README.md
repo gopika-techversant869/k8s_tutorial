@@ -17,6 +17,7 @@ Docker Components
       
       - REST API
 
+                  file:///home/gopika/Downloads/Untitled%20design.png
 
       Docker Daemon (dockerd)
       -----------------------------
@@ -29,7 +30,7 @@ Docker Components
 
               **Example: When you run:**
 
-                      file:///home/gopika/Downloads/Untitled%20design.png
+                        docker run nginx
 
                     **What happens:
 
