@@ -42,6 +42,8 @@ curl http://localhost:5000/users
 Here you got an empty list []
 Because data.json was stored inside container filesystem, and when container was deleted, the file was deleted.
 
+Second Case - With Volume
+-------------------------------------
 
 Here we use the volume concept 
 ---------------------------------
