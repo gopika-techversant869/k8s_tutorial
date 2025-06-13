@@ -28,8 +28,9 @@ curl http://localhost:5000/users
 
 Then stop and remove the container
 ---------------------------------------
-docker stop flask-no-volume
-docker rm flask-no-volume
+        docker stop flask-no-volume
+        
+        docker rm flask-no-volume
 
 Agian run 
 -------------
