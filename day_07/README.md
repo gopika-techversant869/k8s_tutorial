@@ -51,15 +51,15 @@ Here we use the volume concept
 
 Create a named volume in side the docker:
 
-  docker volume create flask-data
+          docker volume create flask-data
 
 Then run the same image that we already created above.
 
-docker run -d \
-  --name flask-with-volume \
-  -p 5000:5000 \
-  -v flask-data:/app \
-  flask-no-volume-app
+            docker run -d \
+              --name flask-with-volume \
+              -p 5000:5000 \
+              -v flask-data:/app \
+              flask-no-volume-app
 
 Here 
       - This mounts volume flask-data into /app directory inside container.
