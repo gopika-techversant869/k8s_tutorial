@@ -9,6 +9,8 @@ services:
     command: ["python", "app.py"]
     volumes:
       - ./app_1:/app
+      - app1_data:/app/data
+
     ports:
       - "5001:5000"
 
@@ -20,5 +22,6 @@ services:
     command: ["python", "app1.py"]
     volumes:
       - ./app_2:/app
+      -  app2_data:/app/data
     ports:
       - "5002:5000"
