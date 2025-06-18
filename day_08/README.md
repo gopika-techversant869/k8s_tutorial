@@ -54,8 +54,7 @@ Node controller:
 
 Deployement controller:
 -----------------------------
-![replica](https://github.com/user-attachments/assets/99013df6-0463-4131-b19e-ad2c5aa24fd9)
-
+![pod (1)](https://github.com/user-attachments/assets/264b4168-1941-4bce-bcb3-5fc1a14eed96)
 
 Scheduler:
 ------------
