@@ -50,7 +50,7 @@ controller
 For example:
 Node controller:
 -------------------
-![controller](https://github.com/user-attachments/assets/2a53f170-9d70-4a93-bebd-147980e6908b)
+![controller (1)](https://github.com/user-attachments/assets/cbd3fd5d-0ba2-448f-bb6c-102a06a8635d)
 
 Deployement controller:
 -----------------------------
