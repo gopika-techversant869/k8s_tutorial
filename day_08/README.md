@@ -7,6 +7,16 @@ Kubernetes architecture is, at its core, a distributed system. It automates the 
 ![image](https://github.com/user-attachments/assets/28d7917d-bb5d-4f58-a39a-04ba772c4bea)
 
 
+
+Cluster
+------------------------
+
+![pod](https://github.com/user-attachments/assets/1e91630a-b7f8-4333-aceb-3c67f8266f5a)
+
+
+Control plane 
+-------------------------
+
 Components of Archetecture:
 
 Api Server:
