@@ -11,7 +11,7 @@ You can install kind in your local machine in the following ways:
 Refer to this : https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
 
 
-Creating cluster:
+1.Creating cluster:
 -------------------------------------------------
 This is the most common command and creates a single-node cluster (the default cluster name is kind).
 
@@ -42,7 +42,7 @@ You will see output similar to this, indicating the steps:
                 
                 Have fun with your cluster!
 
-Verifying the Cluster
+2.Verifying the Cluster
 --------------------------------
 
 Once created, you can use kubectl to verify its status.
@@ -55,31 +55,31 @@ Output:
                     kind-control-plane   Ready    control-plane   2m    v1.28.0
 
 
-Get your cluster info
+3.Get your cluster info
 ---------------------------
 
                    kubectl cluster-info
 
-Get your kubernets cluster version info
+4.Get your kubernets cluster version info
 --------------------------------------
 
                     kubectl version
 
-setting the kubectl Context
+5.setting the kubectl Context
 --------------------------------------
 kind automatically sets your kubectl context to the newly created cluster.If you have multiple cluster then you can switch it with :
 
                 kubectl config use-context cluster name
 
 
-deleting a cluster
+6.deleting a cluster
 ------------------------------
                 
                 kind delete cluster
                      or 
                 kind delete cluster --name your cluster name
 
-Listing Clusters
+7.Listing Clusters
 -----------------------
 If you have multiple kind clusters then you can list them by:
 
