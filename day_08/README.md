@@ -56,6 +56,15 @@ Deployement controller:
 -----------------------------
 ![pod (1)](https://github.com/user-attachments/assets/264b4168-1941-4bce-bcb3-5fc1a14eed96)
 
+
+Job controller
+-----------------------------
+Run a one-time task to completion like a script.
+
+![replicaset](https://github.com/user-attachments/assets/188c00a0-de78-4608-acf0-3e43fd43ad86)
+
+
+
 Scheduler:
 ------------
 Assign the best node.
