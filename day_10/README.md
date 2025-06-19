@@ -1,4 +1,4 @@
-Kind - Kubernets in cluster
+Kind - Kubernets in Docker
 ----------------------------
 "kind" (lowercase) is also a popular command-line tool. It stands for "Kubernetes in Docker." Its purpose is to allow you to run local Kubernetes clusters using Docker containers as "nodes."
 
