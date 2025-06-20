@@ -31,7 +31,7 @@ When to use:
           - Version controlling your infrastructure.
           - Implementing CI/CD pipelines.
 
-Cheat sheets for kubernets command 
+Cheat sheets for kubernets commands
 -----------------------------------
 
 https://kubernetes.io/docs/reference/kubectl/quick-reference/
