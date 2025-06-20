@@ -193,3 +193,10 @@ Use the command:
                 (eg: kubectl apply -f test.yaml)
 
 **Then you find the status and test the application**
+
+
+
+How to create a service for this pod for access publically
+----------------------------------------------------------------------------
+
+
