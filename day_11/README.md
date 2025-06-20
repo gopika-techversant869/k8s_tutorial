@@ -30,3 +30,9 @@ When to use:
           - Managing complex applications with multiple components (Pods, Deployments, Services, ConfigMaps, Secrets, etc.).
           - Version controlling your infrastructure.
           - Implementing CI/CD pipelines.
+
+
+For the learning purpose first we create the pod 
+------------------------------------------------
+In imperative way:
+--------------------
