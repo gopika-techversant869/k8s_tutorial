@@ -31,6 +31,11 @@ When to use:
           - Version controlling your infrastructure.
           - Implementing CI/CD pipelines.
 
+Cheat sheets for kubernets command 
+-----------------------------------
+
+https://kubernetes.io/docs/reference/kubectl/quick-reference/
+
 
 For the learning purpose first we create the pod 
 ------------------------------------------------
