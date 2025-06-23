@@ -212,3 +212,5 @@ Deployment
                                 - containerPort: 80
 
 
+![image](https://github.com/user-attachments/assets/dc0d98fa-51af-47d9-abf6-833f05108985)
+
