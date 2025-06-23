@@ -75,6 +75,7 @@ out:
 
 4.Describe the nodes
 ---------------------------
+curl http://localhost:30080
 
     kubectl describe nodes
 
@@ -190,24 +191,24 @@ Same as the apply to cluster, verify status and describe
 
 Deployment
 -------------------
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.25
-        ports:
-        - containerPort: 80
+                        apiVersion: apps/v1
+                        kind: Deployment
+                        metadata:
+                          name: nginx-deployment
+                        spec:
+                          replicas: 3
+                          selector:
+                            matchLabels:
+                              app: nginx
+                          template:
+                            metadata:
+                              labels:
+                                app: nginx
+                            spec:
+                              containers:
+                              - name: nginx
+                                image: nginx:1.25
+                                ports:
+                                - containerPort: 80
 
 
