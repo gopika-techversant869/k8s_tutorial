@@ -168,23 +168,23 @@ This is the direct successor to ReplicationController, primarily improving label
 
 create the yaml file:
 
-apiVersion: apps/v1
-kind: ReplicaSet
-metadata:
-  name: rs-simple
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.25
+                                    apiVersion: apps/v1
+                                    kind: ReplicaSet
+                                    metadata:
+                                      name: rs-simple
+                                    spec:
+                                      replicas: 2
+                                      selector:
+                                        matchLabels:
+                                          app: myapp
+                                      template:
+                                        metadata:
+                                          labels:
+                                            app: myapp
+                                        spec:
+                                          containers:
+                                          - name: nginx
+                                            image: nginx:1.25
 
 Same as the apply to cluster, verify status and describe
 
