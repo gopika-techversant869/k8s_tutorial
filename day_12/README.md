@@ -27,7 +27,26 @@ Here You're telling Kind to use a custom configuration file (multi-node.yaml) th
             
             - Extra settings (like port mappings, volume mounts, etc.)
 
-Why use a config?
+Why use a config?apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+
 ----------------------
 Without a config file, Kind just creates a single-node cluster by default:
 But with a config file, you can:
@@ -171,5 +190,24 @@ Same as the apply to cluster, verify status and describe
 
 Deployment
 -------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
 
 
