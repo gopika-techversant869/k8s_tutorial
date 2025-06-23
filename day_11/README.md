@@ -196,7 +196,5 @@ Use the command:
 
 
 
-How to create a service for this pod for access publically
-----------------------------------------------------------------------------
 
 
