@@ -39,7 +39,7 @@ But with a config file, you can:
          - Add port mappings (for local access)
           
          - Enable mount volumes, etc.
-
+30080
 
 3.check the status
 -----------------------------
@@ -322,7 +322,7 @@ Example: Match only frontend nginx or apache pods in dev
                 operator: In
                 values: [dev]
 Matches pods with:
-
+30080
             app=nginx or app=apache
             
             tier=frontend
@@ -388,6 +388,14 @@ If two ReplicaSets have overlapping selectors:
 
 Deployment
 -------------------
+A Kubernetes Deployment automates the management of Pods via ReplicaSets. It provides rolling updates, rollback capability, and ensures high availability by maintaining the desired number of Pods during updates.
+
+For example:
+-------------
+Step 1 :Create the yaml file for deploymnt
+-------------------------------------
+
+
                         apiVersion: apps/v1
                         kind: Deployment
                         metadata:
@@ -409,5 +417,102 @@ Deployment
                                 - containerPort: 80
 
 
-![image](https://github.com/user-attachments/assets/dc0d98fa-51af-47d9-abf6-833f05108985)
 
+Step 2: Apply Your Deployment to Kubernetes
+------------------------------------------------
+            kubectl apply -f my-first-deployment.yaml
+            
+
+Step 3: Verify That Everything Is Running (Inside the Cluster)
+-------------------------------------------------------
+
+            kubectl get deployment my-first-nginx-deployment
+
+3.1Check the ReplicaSet created by your Deployment:
+----------------------------------------------------
+            kubectl get replicaset -l app=my-first-nginx
+
+3.2.Check the Pods themselves:
+-----------------------------------
+            kubectl get pods -l app=my-first-nginx
+
+Step 4: Clean Up
+----------------------
+You can delete this Deployment:
+
+            kubectl delete -f my-first-deployment.yaml
+
+How to scale the deployement
+--------------------------------------------------
+
+            kubectl scale deployment my-first-nginx-deployment --replicas=5
+            
+What happens behind the scenes:
+
+- You send the kubectl scale command to the Kubernetes API server.
+
+- The Deployment controller notices that the desired replicas count for my-first-nginx-deployment has changed from 2 to 5.
+
+- It then tells the ReplicaSet (the one it created and manages) to update its desired replica count to 5.
+
+- The ReplicaSet controller notices this change and instructs the Kubernetes scheduler to create 3 new Pods (5 desired - 2 current = 3 new).
+
+- Kubernetes finds suitable Nodes, and the new Pods are launched.
+
+Verify the scaling to count the pods:
+-----------------------------------------
+First you check the status of scaling then count the pods using following command.
+
+            kubectl get pods -l app=my-first-nginx
+
+In the same way you can scale down the deployemnt the same command.
+
+How to update the image:
+----------------------------------
+Updating a Deployment means changing the application running inside the Pods (e.g., updating the Docker image version, changing environment variables, or adding new configurations).
+
+We can do this updates using imperatively and declaratively:
+---------------------------------------------------------------
+1. use set command:
+   
+               kubectl set image deployment/my-first-nginx-deployment nginx-container=nginx:1.26 --record
+
+   --record: This flag is very useful! It saves the command used to make the change, which helps when you look at the rollout history later.
+
+2.Modifying the YAML file and reapplying 
+
+            template:
+                metadata:
+                  labels:
+                    app: my-first-nginx
+                    version: 1.26 # Add or update this line
+                spec:
+                  containers:
+                  - name: nginx-container
+                    image: nginx:1.26 # CHANGE THIS LINE
+                    ports:
+                    - containerPort: 80
+
+3.Wtach the pod status in real time:
+
+            kubectl get pods -l app=my-first-nginx -w
+
+4.Check the deployemnt rollout status :
+
+            kubectl rollout status deployment/my-first-nginx-deployment
+            
+5.Check the ReplicaSets:
+
+            kubectl get rs -l app=my-first-nginx
+
+6.Check history:
+
+            kubectl rollout history deployment my-first-nginx-deployment
+
+7.Rollback to the previous version:
+
+            kubectl rollout undo deployment my-first-nginx-deployment
+
+8.Rollback to specific version:
+
+            kubectl rollout undo deployment my-first-nginx-deployment --to-revision=<revision-number>
