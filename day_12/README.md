@@ -39,7 +39,6 @@ But with a config file, you can:
          - Add port mappings (for local access)
           
          - Enable mount volumes, etc.
-30080
 
 3.check the status
 -----------------------------
@@ -322,7 +321,7 @@ Example: Match only frontend nginx or apache pods in dev
                 operator: In
                 values: [dev]
 Matches pods with:
-30080
+
             app=nginx or app=apache
             
             tier=frontend
