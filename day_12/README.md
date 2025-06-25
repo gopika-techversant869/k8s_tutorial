@@ -515,3 +515,16 @@ We can do this updates using imperatively and declaratively:
 8.Rollback to specific version:
 
             kubectl rollout undo deployment my-first-nginx-deployment --to-revision=<revision-number>
+
+
+When updating traffic serve like this 
+------------------------------------------------
+| Step | Old Pods | New Pods        | Traffic Served By     |
+| ---- | -------- | --------------- | --------------------- |
+| 0    | 3        | 0               | All old               |
+| 1    | 3        | 1 (not Ready)   | Only old              |
+| 2    | 2        | 1               | Mixed (2 old + 1 new) |
+| 3    | 2        | 2 (1 not Ready) | Mixed (until Ready)   |
+| 4    | 1        | 2               | Mixed (1 old + 2 new) |
+| 5    | 0        | 3               | All new               |
+
