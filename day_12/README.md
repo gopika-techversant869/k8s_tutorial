@@ -56,7 +56,7 @@ out:
 
 4.Describe the nodes
 ---------------------------
-curl http://localhost:30080
+
 
     kubectl describe nodes
 
