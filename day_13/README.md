@@ -172,6 +172,17 @@ How to create and test clusterIp service
                                 </html>
 
 
+
+List all serives in the k8s
+---------------------------
+        kubectl get svc -A
+
+        NAMESPACE     NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                  AGE
+        default       backend-service   ClusterIP   10.96.130.94   <none>        80/TCP                   131m
+        default       kubernetes        ClusterIP   10.96.0.1      <none>        443/TCP                  2d20h
+        kube-system   kube-dns          ClusterIP   10.96.0.10     <none>        53/UDP,53/TCP,9153/TCP   2d20h
+
+
 2.NodePort
 ----------------------
 
