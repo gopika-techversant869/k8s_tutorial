@@ -43,6 +43,18 @@ A Service:
 
 So the client doesn’t need to worry about which Pod or IP — it just calls the Service.
 
+Types of Services in K8s
+-------------------------
+
+![s](https://github.com/user-attachments/assets/7883e9c1-de80-4e09-b080-331869dd376c)
 
 
 
+1.ClusterIP
+----------------
+
+Default type
+
+Exposes the Service internally within the cluster
+
+Cannot be accessed from outside
