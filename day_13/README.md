@@ -53,8 +53,134 @@ Types of Services in K8s
 1.ClusterIP
 ----------------
 
-Default type
+-Default type
 
-Exposes the Service internally within the cluster
+-Exposes the Service internally within the cluster
 
-Cannot be accessed from outside
+-Cannot be accessed from outside
+
+![image](https://github.com/user-attachments/assets/5857fffe-2ce3-465a-998e-7ab8ed66e170)
+
+How to create and test clusterIp service
+---------------------------------------------
+
+1.Here we have to create a deployment.yaml file 
+
+                apiVersion: apps/v1
+                kind: Deployment
+                metadata:
+                  name: backend
+                spec:
+                  replicas: 1
+                  selector:
+                    matchLabels:
+                      app: backend
+                  template:
+                    metadata:
+                      labels:
+                        app: backend
+                    spec:
+                      containers:
+                        - name: backend
+                          image: nginx
+                          ports:
+                            - containerPort: 80
+
+2.Apply the deployment to the cluster
+
+                kubectl apply -f deployement.yaml
+
+3.Create the clusterIp service: cluster-service.yaml
+
+                apiVersion: v1
+                kind: Service
+                metadata:
+                  name: backend-service
+                spec:
+                  selector:
+                    app: backend
+                  ports:
+                    - port: 80
+                      targetPort: 80
+                  type: ClusterIP
+
+        
+        In the selector we provide the label of the pods that we created in the deployment.
+        
+
+4.Apply the cluster manifetst to the cluster
+
+                kubectl apply -f service.yaml
+
+5.Verify the service status
+
+                kubectl get svc backend-service
+
+        then you get the following:
+
+                NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+                backend-service   ClusterIP   10.96.130.94   <none>        80/TCP    106m
+
+
+6.Create a test pod to access the service
+
+        
+        kubectl run test-client --rm -it --image=busybox --restart=Never -- sh
+
+                | Part              | Meaning                                                |
+                | ----------------- | ------------------------------------------------------ |
+                | `kubectl run`     | Run a quick pod                                        |
+                | `test-client`     | Name of the pod                                        |
+                | `--rm`            | Automatically delete it after you're done              |
+                | `-it`             | Interactive terminal (so you can type commands inside) |
+                | `--image=busybox` | Use a tiny Linux container with basic tools            |
+                | `--restart=Never` | Just a one-time pod (not a deployment)                 |
+                | `-- sh`           | Start a shell inside the pod                           |
+
+
+
+7.Test the service inside the shell
+
+        wget -qO- http://service-name 
+
+        For example: wget -qO- http://backend-service
+
+        Then you get like this:
+
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                <title>Welcome to nginx!</title>
+                                <style>
+                                html { color-scheme: light dark; }
+                                body { width: 35em; margin: 0 auto;
+                                font-family: Tahoma, Verdana, Arial, sans-serif; }
+                                </style>
+                                </head>
+                                <body>
+                                <h1>Welcome to nginx!</h1>
+                                <p>If you see this page, the nginx web server is successfully installed and
+                                working. Further configuration is required.</p>
+                                
+                                <p>For online documentation and support please refer to
+                                <a href="http://nginx.org/">nginx.org</a>.<br/>
+                                Commercial support is available at
+                                <a href="http://nginx.com/">nginx.com</a>.</p>
+                                
+                                <p><em>Thank you for using nginx.</em></p>
+                                </body>
+                                </html>
+
+
+2.NodePort
+----------------------
+
+
+
+
+
+
+
+
+
+
