@@ -220,6 +220,61 @@ That means:
 Hostport -> kind container(cluster port) ->nodeport ->service port(cluster-ip) -> container port inside the pod
 
 
+Create the nodepott service
+--------------------------------
+
+1.Create the deploymnt 
+
+# nginx-deployment.yaml
+                        apiVersion: apps/v1
+                        kind: Deployment
+                        metadata:
+                          name: nginx-deployment
+                        spec:
+                          replicas: 2
+                          selector:
+                            matchLabels:
+                              app: nginx
+                          template:
+                            metadata:
+                              labels:
+                                app: nginx
+                            spec:
+                              containers:
+                                - name: nginx
+                                  image: nginx
+                                  ports:
+                                    - containerPort: 80
+
+
+2. Apply to the cluster
+
+           kubectl apply -f nginx-deployment.yaml
+
+3.Create the NodePort Service 
+
+# nginx-service.yaml
+                apiVersion: v1
+                kind: Service
+                metadata:
+                  name: nginx-service
+                spec:
+                  type: NodePort
+                  selector:
+                    app: nginx
+                  ports:
+                    - port: 80         # Service port inside cluster
+                      targetPort: 80   # Pod's containerPort
+                      nodePort: 30080  # External port (what we access from browser)
+
+
+4.Apply to the cluster
+
+        kubectl apply -f nginx-service.yaml
+
+5. Access from browser
+
+           http://localhost:30080
 
 
 
