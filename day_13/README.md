@@ -214,6 +214,12 @@ That means:
         - Without port forwarding (extraPortMappings), that traffic won’t reach the container.
 
 
+![image](https://github.com/user-attachments/assets/a923de78-5e04-4717-8fb3-b039a0e05b9c)
+
+
+Hostport -> kind container(cluster port) ->nodeport ->service port(cluster-ip) -> container port inside the pod
+
+
 
 
 
