@@ -185,6 +185,34 @@ List all serives in the k8s
 
 2.NodePort
 ----------------------
+A NodePort is one of the Kubernetes Service types that allows external access to your app running inside the cluster.
+
+It exposes your app on a static port (30000–32767) on each worker node's IP address, making it accessible from outside the cluster
+
+Here we create the cluster like this because we use kind cluster
+
+                kind: Cluster
+                apiVersion: kind.x-k8s.io/v1alpha4
+                nodes:
+                  - role: control-plane
+                    extraPortMappings:
+                      - containerPort: 30080
+                        hostPort: 30080
+                        protocol: TCP
+                  - role: worker
+
+That means:
+
+        - Each Kubernetes node is a Docker container.
+        
+        - So, you can’t directly access NodePorts (like localhost:30080) unless you explicitly forward ports from your host to the container.
+       
+        - NodePort opens ports on the Kubernetes node (Docker container).
+
+        - But you’re running curl http://localhost:30080 from your host machine, not from inside the container.
+        
+        - Without port forwarding (extraPortMappings), that traffic won’t reach the container.
+
 
 
 
