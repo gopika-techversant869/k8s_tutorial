@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 DATA_FILE = "data.json"
 
-# Load data from file if exists
 if os.path.exists(DATA_FILE):
     with open(DATA_FILE, "r") as f:
         users = json.load(f)
