@@ -126,6 +126,7 @@ Or apply a YAML file:
                 kubectl apply -f deployment.yaml -n dev
 
 Or you can mention the namespace in the yaml file like:
+
                 apiVersion: apps/v1
                 kind: Deployment
                 metadata:
@@ -144,6 +145,6 @@ Or you can mention the namespace in the yaml file like:
                       containers:
                       - name: nginx
                         image: nginx
-                        
+        
 Then apply this with kubectl
         
